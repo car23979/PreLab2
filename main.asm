@@ -30,4 +30,8 @@ SETUP:
 	// Inicializar Timer0
 	Call INIT_TMR0
 
-
+	// Configurar los 4 primeros bits de PORTD como salida (LEDs)
+    LDI R16, 0x0F
+    OUT DDRD, R16  // PD0-PD3 como salida
+    LDI R16, 0x00
+    OUT PORTD, R16 // Apagar LEDs inicialmente
