@@ -21,4 +21,8 @@ OUT		SPH, R16
 
 // Configurar el MCU
 SETUP:
-
+	// Configurar Prescaler
+	LDI R16, (1 << CLKPCE)
+    STS CLKPR, R16    // Habilitar cambio de PRESCALER
+    LDI R16, 0b00000100
+    STS CLKPR, R16    // Configurar Prescaler a 16 F_CPU = 1MHz
