@@ -1,12 +1,9 @@
-;
-; AssemblerApplication3.asm
-;
-; Created: 14/02/2025 04:00:08 p. m.
-; Author : Admin
-;
+/*
+* Laboratorio1.asm
+*
+* Created: 14-Feb-25 12:00:00 PM
+* Author : David Carranza
+* Descripción: Implementación de un Timer0 y dos botones
+*/
+// Encabezado
 
-
-; Replace with your application code
-start:
-    inc r16
-    rjmp start
