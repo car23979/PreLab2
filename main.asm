@@ -16,3 +16,7 @@ LDI		R16, LOW(RAMEND)
 OUT		SPL, R16
 LDI		R16, HIGH(RAMEND)
 OUT		SPL, R16
+
+// Configurar el MCU
+SETUP:
+
