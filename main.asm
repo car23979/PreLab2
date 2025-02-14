@@ -35,3 +35,7 @@ SETUP:
     OUT DDRD, R16  // PD0-PD3 como salida
     LDI R16, 0x00
     OUT PORTD, R16 // Apagar LEDs inicialmente
+
+	// Inicializar contadores
+    LDI COUNTER, 0x00
+    LDI OVERFLOW_COUNT, 0x00
