@@ -39,3 +39,10 @@ SETUP:
 	// Inicializar contadores
     LDI COUNTER, 0x00
     LDI OVERFLOW_COUNT, 0x00
+
+// Loop infinito
+MAIN:
+	IN R16, TIFR0		// Leer registros de interrupción en TIMER0
+	SBRS R16, TOV0		// Salta si el bit 0 no está "set" (TOV0 bit)
+    RJMP MAIN_LOOP		// Reiniciar loop si no hay overflow
+    
