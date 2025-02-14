@@ -10,6 +10,8 @@
 
 .cseg
 .org	0x0000
+.def	COUNTER = R20 // Contador de 4bits
+.def	OVERFLOW_COUNT = R21	// Contador de overflows
 
 // Configuración de pila
 LDI		R16, LOW(RAMEND)
