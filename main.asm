@@ -26,3 +26,8 @@ SETUP:
     STS CLKPR, R16    // Habilitar cambio de PRESCALER
     LDI R16, 0b00000100
     STS CLKPR, R16    // Configurar Prescaler a 16 F_CPU = 1MHz
+
+	// Inicializar Timer0
+	Call INIT_TMR0
+
+
