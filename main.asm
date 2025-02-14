@@ -1,7 +1,7 @@
 /*
 * Laboratorio1.asm
 *
-* Created: 14-Feb-25 12:00:00 PM
+* Created: 14-Feb-25 12:00:08 PM
 * Author : David Carranza
 * Descripción: Implementación de un Timer0 y dos botones
 */
@@ -44,10 +44,30 @@ SETUP:
 MAIN:
 	IN R16, TIFR0		// Leer registros de interrupción en TIMER0
 	SBRS R16, TOV0		// Salta si el bit 0 no está "set" (TOV0 bit)
-    RJMP MAIN_LOOP		// Reiniciar loop si no hay overflow
+    RJMP MAIN		// Reiniciar loop si no hay overflow
 
 	SBI TIFR0, TOV0		// Limpiar bandera de "overflow"
     LDI R16, 100
     OUT TCNT0, R16      // Volver a cargar valor inicial en TCNT0
     
+    INC OVERFLOW_COUNT    // Contar el número de overflows
+    CPI OVERFLOW_COUNT, 10 // ¿Llegamos a 100ms?
+    BRNE MAIN        // Si no, seguir esperando más overflows
     
+    CLR OVERFLOW_COUNT    // Reiniciar contador de overflows
+
+    INC COUNTER           // Incrementar el contador binario
+    ANDI COUNTER, 0x0F    // Mantener solo los 4 bits menos significativos
+    OUT PORTD, COUNTER    // Mostrar el valor en los LEDs
+    
+    RJMP MAIN        // Repetir el ciclo
+
+/****************************************/
+// NON-Interrupt subroutines
+INIT_TMR0:
+    LDI R16, (1<<CS01) | (1<<CS00)  // Prescaler = 64
+    OUT TCCR0B, R16
+    LDI R16, 100   // Cargar TCNT0 para generar overflows cada 10ms
+    OUT TCNT0, R16
+    RET
+
